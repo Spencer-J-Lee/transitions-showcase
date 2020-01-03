@@ -1,0 +1,284 @@
+/* === APP-WIDE === */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+  background-color: #111;
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+#circles, #squares, #morphers {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+[class^='outer'] {
+  position: relative;
+  display: flex;
+  width: 12%;
+  border: 2px solid;
+}
+
+[class^='outer']:hover,
+[class^='morph-container'] {
+  cursor: pointer;
+}
+
+[class^='inner'],
+[class^="morpher-"] {
+  transition-duration: 1.5s;
+}
+
+/* === LABELS === */
+
+.centered-label {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* === SQUARES === */
+
+[class^='outer-square'] {
+  justify-content: left;
+  align-items: center;
+}
+
+[class^='inner-square'] {
+  width: 0%;
+  height: 100%;
+  transition-property: width;
+}
+
+.outer-square-linear:hover .inner-square-linear,
+.outer-square-ease:hover .inner-square-ease,
+.outer-square-ease-in:hover .inner-square-ease-in,
+.outer-square-ease-out:hover .inner-square-ease-out,
+.outer-square-ease-in-out:hover .inner-square-ease-in-out {
+  width: 100%;
+  height: 100%;
+}
+
+/* === CIRCLES === */
+
+#circles.centered-label {
+  border-radius: 50%;
+}
+
+[class^='outer-circle'] {
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+[class^='inner-circle'] {
+  width: 0%;
+  height: 0%;
+  border-radius: 50%;
+  transition-property: width, height;
+}
+
+.outer-circle-linear:hover .inner-circle-linear,
+.outer-circle-ease:hover .inner-circle-ease,
+.outer-circle-ease-in:hover .inner-circle-ease-in,
+.outer-circle-ease-out:hover .inner-circle-ease-out,
+.outer-circle-ease-in-out:hover .inner-circle-ease-in-out {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* === MORPHERS === */
+
+#morphers {
+  min-height: 100px;
+}
+
+[class^='morph-container'] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+
+[class^='morph-container'] > .centered-label {
+  position: relative;
+  display: block;
+  text-align: center;
+  height: auto;
+  bottom: -72px;
+}
+
+.morph-container-linear:hover .morpher-linear,
+.morph-container-ease:hover .morpher-ease,
+.morph-container-ease-in:hover .morpher-ease-in,
+.morph-container-ease-out:hover .morpher-ease-out,
+.morph-container-ease-in-out:hover .morpher-ease-in-out {
+  left: calc(100% - 60px);
+  border-radius: 50%;
+  transform: rotate(270deg);
+}
+
+[class^="morpher-"] {
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #cd6a5a;
+  transition-property: left, border-radius, transform;
+}
+
+.start, .end {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: calc(50% - 30px);
+  border: 2px solid;
+}
+
+.start {
+  left: 0;
+}
+
+.end {
+  right: 0;
+  border-radius: 50%;
+}
+
+/* === LINEAR === */
+
+[class^='outer'][class$='linear'], .morph-container-linear {
+  border-color: #84cd5a;
+  color: #84cd5a;
+}
+
+[class^='inner'][class$='linear'], .morpher-linear {
+  background-color: #84cd5a;
+  transition-timing-function: linear;
+}
+
+/* === EASE === */
+
+[class^='outer'][class$='ease'], .morph-container-ease {
+  border-color: #558be8;
+  color: #558be8;
+}
+
+[class^='inner'][class$='ease'], .morpher-ease {
+  background-color: #558be8;
+  transition-timing-function: ease;
+}
+
+/* === EASE-IN === */
+
+[class^='outer'][class$='ease-in'], .morph-container-ease-in {
+  border-color: #b159e2;
+  color: #b159e2;
+}
+
+[class^='inner'][class$='ease-in'], .morpher-ease-in {
+  background-color: #b159e2;
+  transition-timing-function: ease-in;
+}
+
+/* === EASE-OUT === */
+
+[class^='outer'][class$='ease-out'], .morph-container-ease-out {
+  border-color: #cd6a5a;
+  color: #cd6a5a;
+}
+
+[class^='inner'][class$='ease-out'], .morpher-ease-out {
+  background-color: #cd6a5a;
+  transition-timing-function: ease-out;
+}
+
+/* === EASE-IN-OUT === */
+
+[class^='outer'][class$='ease-in-out'], .morph-container-ease-in-out {
+  border-color: #5abdcd;
+  color: #5abdcd;
+}
+
+[class^='inner'][class$='ease-in-out'], .morpher-ease-in-out {
+  background-color: #5abdcd;
+  transition-timing-function: ease-in-out;
+}
+
+/* === TRANSITION DURATION SETTER === */
+
+.duration-setter-form {
+  position: relative;
+  margin: 40px 0px;
+}
+
+.setter-input {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #6e7d9a;
+  border-radius: 5px;
+  padding: 8px 40px;
+  color: #6e7d9a;
+  font-size: 16px;
+  text-align: center;
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+::placeholder {
+  color: #384051;
+}
+
+.success, .error {
+  color: #EEE;
+  border-color: #EEE;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+
+.success {
+  background-color: #39B54A;
+}
+
+.error {
+  background-color: #EC2828;
+}
+
+.fa-check, .fa-times {
+  position: absolute;
+  transition-property: color, top;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.fa-check {
+  top: calc(50% - 12px);
+  color: #39B54A;
+  right: -32px;
+}
+
+.fa-times {
+  top: calc(50% - 12.5px);
+  color: #EC2828;
+  right: -30px;
+  font-size: 28px;
+}
+
+.hidden-icon {
+  top: 60px;
+  color: transparent;
+}
